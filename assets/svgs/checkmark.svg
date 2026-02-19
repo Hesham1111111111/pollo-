@@ -1,0 +1,11 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon/Outline/checkmark">
+<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M6.57542 11.9999C6.39142 11.9999 6.21542 11.9239 6.08942 11.7899L2.84743 8.33725C2.59476 8.06925 2.60876 7.64725 2.87676 7.39525C3.14543 7.14325 3.56743 7.15658 3.81876 7.42458L6.56876 10.3519L12.1741 4.21725C12.4234 3.94458 12.8448 3.92658 13.1168 4.17458C13.3881 4.42258 13.4068 4.84458 13.1588 5.11591L7.06742 11.7826C6.94276 11.9199 6.76542 11.9986 6.58009 11.9999H6.57542Z" fill="url(#paint0_linear_0_2148)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_2148" x1="2.6665" y1="7.95996" x2="14.6932" y2="7.95996" gradientUnits="userSpaceOnUse">
+<stop stop-color="#064198"/>
+<stop offset="0.67" stop-color="#C20167"/>
+</linearGradient>
+</defs>
+</svg>
