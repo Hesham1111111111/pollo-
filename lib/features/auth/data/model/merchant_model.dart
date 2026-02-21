@@ -4,8 +4,8 @@ part 'merchant_model.freezed.dart';
 part 'merchant_model.g.dart';
 
 @freezed
-class MerchantModel with _$MerchantModel {
-  const factory MerchantModel({
+class Merchant with _$Merchant {
+  const factory Merchant({
     required int id,
 
     @JsonKey(name: 'first_name')
@@ -23,9 +23,9 @@ class MerchantModel with _$MerchantModel {
     int? reviewsAvgRating,
 
     @JsonKey(name: 'created_at')
-    String? createdAt,
-  }) = _MerchantModel;
+    DateTime? createdAt,
+  }) = _Merchant;
 
-  factory MerchantModel.fromJson(Map<String, dynamic> json) =>
-      _$MerchantModelFromJson(json);
+  factory Merchant.fromJson(Map<String, dynamic> json) =>
+      _$MerchantFromJson(json);
 }

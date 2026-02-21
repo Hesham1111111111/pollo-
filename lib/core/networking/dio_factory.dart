@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pollo/core/helpers/app_functions.dart';
 import 'package:pollo/core/networking/api_endpoints.dart';
 import 'package:pollo/core/shared_pref/shared_pref_helper.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -32,6 +33,10 @@ class DioFactory {
 
     _dioInstance = Dio(
       BaseOptions(
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
         baseUrl: ApiEndpoints.baseUrl, // Base API URL
         connectTimeout: _defaultTimeout,
         receiveTimeout: _defaultTimeout,
@@ -48,11 +53,22 @@ class DioFactory {
     _dioInstance?.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = SharedPrefHelper.getString(key: SharedPrefKeys.token);
-          if (token.isNotEmpty && !AppFunctions.isTokenExpired(token)) {
+
+          // متحطش توكن على login أو register
+          if (options.path.contains('login') ||
+              options.path.contains('register')) {
+            return handler.next(options);
+          }
+
+          final token =
+              SharedPrefHelper.getString(key: SharedPrefKeys.token) ?? '';
+
+          if (token.isNotEmpty &&
+              !AppFunctions.isTokenExpired(token)) {
             options.headers['Authorization'] = 'Bearer $token';
           }
-          return handler.next(options); // Continue the request
+
+          return handler.next(options);
         },
       ),
     );

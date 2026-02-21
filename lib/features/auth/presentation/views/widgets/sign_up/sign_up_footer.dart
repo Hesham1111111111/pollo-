@@ -9,39 +9,26 @@ import 'package:pollo/core/widgets/app_button.dart';
 import 'package:pollo/core/widgets/gradient_text.dart';
 
 class SignUpFooter extends StatelessWidget {
-  const SignUpFooter({
-    super.key,
-  });
+  const SignUpFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppButton(
-          title: context.tr(LocaleKeys.signUp),
-          onTap: () {},
-        ),
-        16.verticalSpace,
-        GestureDetector(
-          onTap: () {
-            context.pop();
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 4.w,
-            children: [
-              Text(
-                context.tr(LocaleKeys.haveAccount),
-                style: TextStyles.style14Medium(color: AppColors.secondaryText),
-              ),
-              GradientText(
-                context.tr(LocaleKeys.signIn),
-                style: TextStyles.style16SemiBold(),
-              )
-            ],
+    return GestureDetector(
+      onTap: () => context.pop(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 4.w,
+        children: [
+          Text(
+            context.tr(LocaleKeys.haveAccount),
+            style: TextStyles.style14Medium(color: AppColors.secondaryText),
           ),
-        )
-      ],
+          GradientText(
+            context.tr(LocaleKeys.signIn),
+            style: TextStyles.style16SemiBold(),
+          )
+        ],
+      ),
     );
   }
 }

@@ -5,13 +5,13 @@ part 'auth_response_model.freezed.dart';
 part 'auth_response_model.g.dart';
 
 @freezed
-class AuthResponseModel with _$AuthResponseModel {
-  const factory AuthResponseModel({
+class AuthResponse with _$AuthResponse {
+  const factory AuthResponse({
     required int code,
-    required MerchantModel merchant,
+    required Merchant merchant,
     required String token,
-  }) = _AuthResponseModel;
+  }) = _AuthResponse;
 
-  factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$AuthResponseModelFromJson(json);
+  factory AuthResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseFromJson(json);
 }

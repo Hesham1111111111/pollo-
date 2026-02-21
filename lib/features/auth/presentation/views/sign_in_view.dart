@@ -10,10 +10,12 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<AuthCubit>(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: SignInBody(),
+      create: (_) => getIt.get<AuthCubit>(),
+      child: const Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: SignInBody(),
+          ),
         ),
       ),
     );

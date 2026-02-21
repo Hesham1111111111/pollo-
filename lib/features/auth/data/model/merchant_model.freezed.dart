@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-MerchantModel _$MerchantModelFromJson(Map<String, dynamic> json) {
-  return _MerchantModel.fromJson(json);
+Merchant _$MerchantFromJson(Map<String, dynamic> json) {
+  return _Merchant.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MerchantModel {
+mixin _$Merchant {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String get firstName => throw _privateConstructorUsedError;
@@ -32,23 +32,22 @@ mixin _$MerchantModel {
   @JsonKey(name: 'reviews_avg_rating')
   int? get reviewsAvgRating => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  String? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this MerchantModel to a JSON map.
+  /// Serializes this Merchant to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of MerchantModel
+  /// Create a copy of Merchant
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MerchantModelCopyWith<MerchantModel> get copyWith =>
+  $MerchantCopyWith<Merchant> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MerchantModelCopyWith<$Res> {
-  factory $MerchantModelCopyWith(
-          MerchantModel value, $Res Function(MerchantModel) then) =
-      _$MerchantModelCopyWithImpl<$Res, MerchantModel>;
+abstract class $MerchantCopyWith<$Res> {
+  factory $MerchantCopyWith(Merchant value, $Res Function(Merchant) then) =
+      _$MerchantCopyWithImpl<$Res, Merchant>;
   @useResult
   $Res call(
       {int id,
@@ -59,20 +58,20 @@ abstract class $MerchantModelCopyWith<$Res> {
       String? username,
       String? image,
       @JsonKey(name: 'reviews_avg_rating') int? reviewsAvgRating,
-      @JsonKey(name: 'created_at') String? createdAt});
+      @JsonKey(name: 'created_at') DateTime? createdAt});
 }
 
 /// @nodoc
-class _$MerchantModelCopyWithImpl<$Res, $Val extends MerchantModel>
-    implements $MerchantModelCopyWith<$Res> {
-  _$MerchantModelCopyWithImpl(this._value, this._then);
+class _$MerchantCopyWithImpl<$Res, $Val extends Merchant>
+    implements $MerchantCopyWith<$Res> {
+  _$MerchantCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MerchantModel
+  /// Create a copy of Merchant
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -123,17 +122,17 @@ class _$MerchantModelCopyWithImpl<$Res, $Val extends MerchantModel>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$MerchantModelImplCopyWith<$Res>
-    implements $MerchantModelCopyWith<$Res> {
-  factory _$$MerchantModelImplCopyWith(
-          _$MerchantModelImpl value, $Res Function(_$MerchantModelImpl) then) =
-      __$$MerchantModelImplCopyWithImpl<$Res>;
+abstract class _$$MerchantImplCopyWith<$Res>
+    implements $MerchantCopyWith<$Res> {
+  factory _$$MerchantImplCopyWith(
+          _$MerchantImpl value, $Res Function(_$MerchantImpl) then) =
+      __$$MerchantImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -145,18 +144,18 @@ abstract class _$$MerchantModelImplCopyWith<$Res>
       String? username,
       String? image,
       @JsonKey(name: 'reviews_avg_rating') int? reviewsAvgRating,
-      @JsonKey(name: 'created_at') String? createdAt});
+      @JsonKey(name: 'created_at') DateTime? createdAt});
 }
 
 /// @nodoc
-class __$$MerchantModelImplCopyWithImpl<$Res>
-    extends _$MerchantModelCopyWithImpl<$Res, _$MerchantModelImpl>
-    implements _$$MerchantModelImplCopyWith<$Res> {
-  __$$MerchantModelImplCopyWithImpl(
-      _$MerchantModelImpl _value, $Res Function(_$MerchantModelImpl) _then)
+class __$$MerchantImplCopyWithImpl<$Res>
+    extends _$MerchantCopyWithImpl<$Res, _$MerchantImpl>
+    implements _$$MerchantImplCopyWith<$Res> {
+  __$$MerchantImplCopyWithImpl(
+      _$MerchantImpl _value, $Res Function(_$MerchantImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MerchantModel
+  /// Create a copy of Merchant
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -171,7 +170,7 @@ class __$$MerchantModelImplCopyWithImpl<$Res>
     Object? reviewsAvgRating = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_$MerchantModelImpl(
+    return _then(_$MerchantImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -207,15 +206,15 @@ class __$$MerchantModelImplCopyWithImpl<$Res>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MerchantModelImpl implements _MerchantModel {
-  const _$MerchantModelImpl(
+class _$MerchantImpl implements _Merchant {
+  const _$MerchantImpl(
       {required this.id,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') required this.lastName,
@@ -226,8 +225,8 @@ class _$MerchantModelImpl implements _MerchantModel {
       @JsonKey(name: 'reviews_avg_rating') this.reviewsAvgRating,
       @JsonKey(name: 'created_at') this.createdAt});
 
-  factory _$MerchantModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MerchantModelImplFromJson(json);
+  factory _$MerchantImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MerchantImplFromJson(json);
 
   @override
   final int id;
@@ -250,18 +249,18 @@ class _$MerchantModelImpl implements _MerchantModel {
   final int? reviewsAvgRating;
   @override
   @JsonKey(name: 'created_at')
-  final String? createdAt;
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'MerchantModel(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, username: $username, image: $image, reviewsAvgRating: $reviewsAvgRating, createdAt: $createdAt)';
+    return 'Merchant(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, username: $username, image: $image, reviewsAvgRating: $reviewsAvgRating, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MerchantModelImpl &&
+            other is _$MerchantImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -283,37 +282,36 @@ class _$MerchantModelImpl implements _MerchantModel {
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName, phone,
       email, username, image, reviewsAvgRating, createdAt);
 
-  /// Create a copy of MerchantModel
+  /// Create a copy of Merchant
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MerchantModelImplCopyWith<_$MerchantModelImpl> get copyWith =>
-      __$$MerchantModelImplCopyWithImpl<_$MerchantModelImpl>(this, _$identity);
+  _$$MerchantImplCopyWith<_$MerchantImpl> get copyWith =>
+      __$$MerchantImplCopyWithImpl<_$MerchantImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MerchantModelImplToJson(
+    return _$$MerchantImplToJson(
       this,
     );
   }
 }
 
-abstract class _MerchantModel implements MerchantModel {
-  const factory _MerchantModel(
-          {required final int id,
-          @JsonKey(name: 'first_name') required final String firstName,
-          @JsonKey(name: 'last_name') required final String lastName,
-          final String? phone,
-          required final String email,
-          final String? username,
-          final String? image,
-          @JsonKey(name: 'reviews_avg_rating') final int? reviewsAvgRating,
-          @JsonKey(name: 'created_at') final String? createdAt}) =
-      _$MerchantModelImpl;
+abstract class _Merchant implements Merchant {
+  const factory _Merchant(
+      {required final int id,
+      @JsonKey(name: 'first_name') required final String firstName,
+      @JsonKey(name: 'last_name') required final String lastName,
+      final String? phone,
+      required final String email,
+      final String? username,
+      final String? image,
+      @JsonKey(name: 'reviews_avg_rating') final int? reviewsAvgRating,
+      @JsonKey(name: 'created_at') final DateTime? createdAt}) = _$MerchantImpl;
 
-  factory _MerchantModel.fromJson(Map<String, dynamic> json) =
-      _$MerchantModelImpl.fromJson;
+  factory _Merchant.fromJson(Map<String, dynamic> json) =
+      _$MerchantImpl.fromJson;
 
   @override
   int get id;
@@ -336,12 +334,12 @@ abstract class _MerchantModel implements MerchantModel {
   int? get reviewsAvgRating;
   @override
   @JsonKey(name: 'created_at')
-  String? get createdAt;
+  DateTime? get createdAt;
 
-  /// Create a copy of MerchantModel
+  /// Create a copy of Merchant
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MerchantModelImplCopyWith<_$MerchantModelImpl> get copyWith =>
+  _$$MerchantImplCopyWith<_$MerchantImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

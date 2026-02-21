@@ -14,48 +14,48 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AuthResponseModel _$AuthResponseModelFromJson(Map<String, dynamic> json) {
-  return _AuthResponseModel.fromJson(json);
+AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
+  return _AuthResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AuthResponseModel {
+mixin _$AuthResponse {
   int get code => throw _privateConstructorUsedError;
-  MerchantModel get merchant => throw _privateConstructorUsedError;
+  Merchant get merchant => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
 
-  /// Serializes this AuthResponseModel to a JSON map.
+  /// Serializes this AuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AuthResponseModelCopyWith<AuthResponseModel> get copyWith =>
+  $AuthResponseCopyWith<AuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthResponseModelCopyWith<$Res> {
-  factory $AuthResponseModelCopyWith(
-          AuthResponseModel value, $Res Function(AuthResponseModel) then) =
-      _$AuthResponseModelCopyWithImpl<$Res, AuthResponseModel>;
+abstract class $AuthResponseCopyWith<$Res> {
+  factory $AuthResponseCopyWith(
+          AuthResponse value, $Res Function(AuthResponse) then) =
+      _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({int code, MerchantModel merchant, String token});
+  $Res call({int code, Merchant merchant, String token});
 
-  $MerchantModelCopyWith<$Res> get merchant;
+  $MerchantCopyWith<$Res> get merchant;
 }
 
 /// @nodoc
-class _$AuthResponseModelCopyWithImpl<$Res, $Val extends AuthResponseModel>
-    implements $AuthResponseModelCopyWith<$Res> {
-  _$AuthResponseModelCopyWithImpl(this._value, this._then);
+class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
+    implements $AuthResponseCopyWith<$Res> {
+  _$AuthResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -72,7 +72,7 @@ class _$AuthResponseModelCopyWithImpl<$Res, $Val extends AuthResponseModel>
       merchant: null == merchant
           ? _value.merchant
           : merchant // ignore: cast_nullable_to_non_nullable
-              as MerchantModel,
+              as Merchant,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -80,40 +80,40 @@ class _$AuthResponseModelCopyWithImpl<$Res, $Val extends AuthResponseModel>
     ) as $Val);
   }
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MerchantModelCopyWith<$Res> get merchant {
-    return $MerchantModelCopyWith<$Res>(_value.merchant, (value) {
+  $MerchantCopyWith<$Res> get merchant {
+    return $MerchantCopyWith<$Res>(_value.merchant, (value) {
       return _then(_value.copyWith(merchant: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AuthResponseModelImplCopyWith<$Res>
-    implements $AuthResponseModelCopyWith<$Res> {
-  factory _$$AuthResponseModelImplCopyWith(_$AuthResponseModelImpl value,
-          $Res Function(_$AuthResponseModelImpl) then) =
-      __$$AuthResponseModelImplCopyWithImpl<$Res>;
+abstract class _$$AuthResponseImplCopyWith<$Res>
+    implements $AuthResponseCopyWith<$Res> {
+  factory _$$AuthResponseImplCopyWith(
+          _$AuthResponseImpl value, $Res Function(_$AuthResponseImpl) then) =
+      __$$AuthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int code, MerchantModel merchant, String token});
+  $Res call({int code, Merchant merchant, String token});
 
   @override
-  $MerchantModelCopyWith<$Res> get merchant;
+  $MerchantCopyWith<$Res> get merchant;
 }
 
 /// @nodoc
-class __$$AuthResponseModelImplCopyWithImpl<$Res>
-    extends _$AuthResponseModelCopyWithImpl<$Res, _$AuthResponseModelImpl>
-    implements _$$AuthResponseModelImplCopyWith<$Res> {
-  __$$AuthResponseModelImplCopyWithImpl(_$AuthResponseModelImpl _value,
-      $Res Function(_$AuthResponseModelImpl) _then)
+class __$$AuthResponseImplCopyWithImpl<$Res>
+    extends _$AuthResponseCopyWithImpl<$Res, _$AuthResponseImpl>
+    implements _$$AuthResponseImplCopyWith<$Res> {
+  __$$AuthResponseImplCopyWithImpl(
+      _$AuthResponseImpl _value, $Res Function(_$AuthResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -122,7 +122,7 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
     Object? merchant = null,
     Object? token = null,
   }) {
-    return _then(_$AuthResponseModelImpl(
+    return _then(_$AuthResponseImpl(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
       merchant: null == merchant
           ? _value.merchant
           : merchant // ignore: cast_nullable_to_non_nullable
-              as MerchantModel,
+              as Merchant,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -141,30 +141,30 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AuthResponseModelImpl implements _AuthResponseModel {
-  const _$AuthResponseModelImpl(
+class _$AuthResponseImpl implements _AuthResponse {
+  const _$AuthResponseImpl(
       {required this.code, required this.merchant, required this.token});
 
-  factory _$AuthResponseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AuthResponseModelImplFromJson(json);
+  factory _$AuthResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthResponseImplFromJson(json);
 
   @override
   final int code;
   @override
-  final MerchantModel merchant;
+  final Merchant merchant;
   @override
   final String token;
 
   @override
   String toString() {
-    return 'AuthResponseModel(code: $code, merchant: $merchant, token: $token)';
+    return 'AuthResponse(code: $code, merchant: $merchant, token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthResponseModelImpl &&
+            other is _$AuthResponseImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.merchant, merchant) ||
                 other.merchant == merchant) &&
@@ -175,43 +175,42 @@ class _$AuthResponseModelImpl implements _AuthResponseModel {
   @override
   int get hashCode => Object.hash(runtimeType, code, merchant, token);
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthResponseModelImplCopyWith<_$AuthResponseModelImpl> get copyWith =>
-      __$$AuthResponseModelImplCopyWithImpl<_$AuthResponseModelImpl>(
-          this, _$identity);
+  _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
+      __$$AuthResponseImplCopyWithImpl<_$AuthResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AuthResponseModelImplToJson(
+    return _$$AuthResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _AuthResponseModel implements AuthResponseModel {
-  const factory _AuthResponseModel(
+abstract class _AuthResponse implements AuthResponse {
+  const factory _AuthResponse(
       {required final int code,
-      required final MerchantModel merchant,
-      required final String token}) = _$AuthResponseModelImpl;
+      required final Merchant merchant,
+      required final String token}) = _$AuthResponseImpl;
 
-  factory _AuthResponseModel.fromJson(Map<String, dynamic> json) =
-      _$AuthResponseModelImpl.fromJson;
+  factory _AuthResponse.fromJson(Map<String, dynamic> json) =
+      _$AuthResponseImpl.fromJson;
 
   @override
   int get code;
   @override
-  MerchantModel get merchant;
+  Merchant get merchant;
   @override
   String get token;
 
-  /// Create a copy of AuthResponseModel
+  /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthResponseModelImplCopyWith<_$AuthResponseModelImpl> get copyWith =>
+  _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

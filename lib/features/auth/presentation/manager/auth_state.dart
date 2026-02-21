@@ -1,11 +1,13 @@
-abstract class AuthState {}
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../data/model/auth_response_model.dart';
 
-final class AuthInitial extends AuthState {}
+part 'auth_state.freezed.dart';
 
-final class AuthLoading extends AuthState {}
-
-final class AuthSuccess extends AuthState {}
-
-final class AuthError extends AuthState {}
-
-final class TextObscureChanged extends AuthState {}
+@freezed
+class AuthState with _$AuthState {
+  const factory AuthState.initial() = _Initial;
+  const factory AuthState.loading() = _Loading;
+  const factory AuthState.success({required AuthResponse authResponse}) = _Success;
+  const factory AuthState.error({required String error}) = _Error;
+  const factory AuthState.obscureTextChanged({required bool isObscure}) = _ObscureTextChanged;
+}

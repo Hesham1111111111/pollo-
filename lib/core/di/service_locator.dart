@@ -28,10 +28,10 @@ Future<void> setupServiceLocator() async {
   // <---------------------------------------------------------------------------->
   // Auth
   getIt.registerLazySingleton(
-    () => AuthRepoImpl(apiService: getIt.get<ApiService>()),
+    () => AuthRepoImpl( getIt.get<ApiService>()),
   );
   getIt.registerFactory<AuthCubit>(
-      () => AuthCubit(AuthRepoImpl(apiService: getIt.get<ApiService>())));
+      () => AuthCubit(AuthRepoImpl( getIt.get<ApiService>())));
   // <---------------------------------------------------------------------------->
   // Bottom Nav
   getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
