@@ -14,6 +14,6 @@ _$LoginRequestImpl _$$LoginRequestImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) =>
     <String, dynamic>{
-      'identifier': instance.email,
+        'identifier': instance.email,
       'password': instance.password,
     };

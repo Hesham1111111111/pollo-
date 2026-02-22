@@ -11,13 +11,23 @@ import 'package:pollo/features/home/presentation/manager/home_cubit.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 import 'package:pollo/features/splash_onboarding/presentation/manager/onboarding_cubit.dart';
 
+import '../networking/api_client.dart';
+
 final GetIt getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  // Register Dio instance
+  // Register Dio
   getIt.registerSingleton<Dio>(DioFactory.dio);
-  // Register API Service with the Dio instance
-  getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
+
+// Register ApiService
+  getIt.registerSingleton<ApiService>(
+    ApiService(getIt.get<Dio>()),
+  );
+
+// Register ApiClient  👈 مهم جدًا
+  getIt.registerLazySingleton<ApiClient>(
+        () => ApiClient(getIt.get<ApiService>()),
+  );
   // Register application-wide cubits
   getIt.registerFactory<AppCubit>(() => AppCubit());
   // <---------------------------------------------------------------------------->
@@ -28,10 +38,10 @@ Future<void> setupServiceLocator() async {
   // <---------------------------------------------------------------------------->
   // Auth
   getIt.registerLazySingleton(
-    () => AuthRepoImpl( getIt.get<ApiService>()),
+    () => AuthRepoImpl( getIt.get<ApiClient>()),
   );
   getIt.registerFactory<AuthCubit>(
-      () => AuthCubit(AuthRepoImpl( getIt.get<ApiService>())));
+      () => AuthCubit(AuthRepoImpl( getIt.get<ApiClient>())));
   // <---------------------------------------------------------------------------->
   // Bottom Nav
   getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
