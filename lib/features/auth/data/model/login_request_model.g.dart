@@ -8,7 +8,7 @@ part of 'login_request_model.dart';
 
 _$LoginRequestImpl _$$LoginRequestImplFromJson(Map<String, dynamic> json) =>
     _$LoginRequestImpl(
-      email: json['email'] as String,
+      email: json['identifier'] as String,
       password: json['password'] as String,
     );
 

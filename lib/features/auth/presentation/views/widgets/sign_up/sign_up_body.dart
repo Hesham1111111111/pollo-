@@ -21,8 +21,9 @@ class SignUpBody extends StatelessWidget {
           const SignUpHeader(),
           16.verticalSpace,
           BlocListener<AuthCubit, AuthState>(
+            listenWhen: (prev, curr) => prev.signUpState != curr.signUpState,
             listener: (context, state) {
-              state.maybeWhen(
+              state.signUpState.when(
                 error: (message) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

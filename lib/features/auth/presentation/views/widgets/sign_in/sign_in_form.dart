@@ -15,6 +15,7 @@ import 'package:pollo/core/widgets/app_button.dart';
 import 'package:pollo/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:pollo/features/auth/presentation/manager/auth_state.dart';
 import '../../../../data/model/login_request_model.dart';
+import '../../../manager/request_state.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -48,32 +49,23 @@ class _SignInFormState extends State<SignInForm> {
           16.verticalSpace,
 
           BlocBuilder<AuthCubit, AuthState>(
-            buildWhen: (prev, curr) => curr.maybeWhen(
-              obscureTextChanged: (_) => true,
-              orElse: () => false,
-            ),
+            buildWhen: (prev, curr) => prev.isObscure != curr.isObscure,
             builder: (context, state) {
-              final isObscure = state.maybeWhen(
-                obscureTextChanged: (value) => value,
-                orElse: () => cubit.obscureText,
-              );
-
               return AppTextField(
                 controller: passController,
                 title: context.tr(LocaleKeys.password),
                 hintText: context.tr(LocaleKeys.enterYourPassword),
                 keyboardType: TextInputType.visiblePassword,
+                obscureText: state.isObscure,
                 suffixIcon: GestureDetector(
                   onTap: cubit.toggleObscure,
                   child: SvgPicture.asset(AppSvgs.eye),
                 ),
                 validator: (value) =>
                     AppValidator.validateEmptyField(context, value),
-                obscureText: isObscure,
               );
             },
-          ),
-          8.verticalSpace,
+          ),          8.verticalSpace,
 
           GestureDetector(
             onTap: () => context.pushNamed(Routes.forgetPassword),
@@ -85,21 +77,23 @@ class _SignInFormState extends State<SignInForm> {
           24.verticalSpace,
 
           BlocConsumer<AuthCubit, AuthState>(
+            listenWhen: (prev, curr) => prev.loginState != curr.loginState,
             listener: (context, state) {
-              state.maybeWhen(
+              state.loginState.when(
+                initial: () {},
+                loading: () {},
+                success: (data) {
+                  Navigator.pushReplacementNamed(context, Routes.bottomNav);
+                },
                 error: (message) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(message)));
                 },
-                success: (authResponse) {
-                  Navigator.pushReplacementNamed(context, Routes.bottomNav);
-                },
-                orElse: () {},
               );
             },
+            buildWhen: (prev, curr) => prev.loginState != curr.loginState,
             builder: (context, state) {
-              final isLoading =
-              state.maybeWhen(loading: () => true, orElse: () => false);
+              final isLoading = state.loginState is LoadingState;
 
               return isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -115,8 +109,7 @@ class _SignInFormState extends State<SignInForm> {
                 },
               );
             },
-          ),
-          16.verticalSpace,
+          ),          16.verticalSpace,
 
           GestureDetector(
             onTap: () => context.pushNamed(Routes.signUp),

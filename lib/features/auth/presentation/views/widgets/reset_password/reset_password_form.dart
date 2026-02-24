@@ -33,7 +33,7 @@ class ResetPasswordForm extends StatelessWidget {
                 child: SvgPicture.asset(AppSvgs.eye),
               ),
               validator: (value) => AppValidator.validateEmptyField(context, value),
-              obscureText: cubit.obscureText,
+              obscureText: cubit.state.isObscure,
             ),
             AppTextField(
               title: context.tr(LocaleKeys.confirmPassword),
@@ -46,7 +46,7 @@ class ResetPasswordForm extends StatelessWidget {
                 child: SvgPicture.asset(AppSvgs.eye),
               ),
               validator: (value) => AppValidator.validateEmptyField(context, value),
-              obscureText: cubit.obscureText,
+              obscureText: cubit.state.isObscure,
             ),
           ],
         );
