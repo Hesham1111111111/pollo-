@@ -20,26 +20,7 @@ class SignUpBody extends StatelessWidget {
         children: [
           const SignUpHeader(),
           16.verticalSpace,
-          BlocListener<AuthCubit, AuthState>(
-            listenWhen: (prev, curr) => prev.signUpState != curr.signUpState,
-            listener: (context, state) {
-              state.signUpState.when(
-                error: (message) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(message),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                },
-                success: (authResponse) {
-                  Navigator.pushReplacementNamed(context, Routes.bottomNav);
-                },
-                orElse: () {},
-              );
-            },
-            child: const SignUpForm(),
-          ),
+          const SignUpForm(),
           24.verticalSpace,
         ],
       ),

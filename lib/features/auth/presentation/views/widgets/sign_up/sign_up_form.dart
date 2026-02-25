@@ -1,4 +1,3 @@
-// sign_up_form.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,7 @@ import '../../../../../../core/helpers/validation/app_validator.dart';
 import '../../../../../../core/resources/assets.dart';
 import '../../../../../../core/widgets/app_text_field.dart';
 import '../../../../../../core/widgets/app_button.dart';
-import '../../../manager/request_state.dart';
+import '../../../../../../core/helpers/request_state/request_state.dart';
 import 'sign_up_footer.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -88,8 +87,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 AppValidator.validateEmptyField(context, value),
           ),
           16.verticalSpace,
-
-          // Password field
           BlocBuilder<AuthCubit, AuthState>(
             buildWhen: (prev, curr) => prev.isObscure != curr.isObscure,
             builder: (context, state) {
@@ -101,7 +98,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 obscureText: state.isObscure,
                 suffixIcon: GestureDetector(
                   onTap: cubit.toggleObscure,
-                  child: SvgPicture.asset(AppSvgs.eye),
+                  child: state.isObscure
+                      ? Icon(Icons.visibility_off)
+                      : SvgPicture.asset(AppSvgs.eye),
                 ),
                 validator: (value) =>
                     AppValidator.validateEmptyField(context, value),
@@ -109,8 +108,6 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           16.verticalSpace,
-
-          // Confirm password
           BlocBuilder<AuthCubit, AuthState>(
             buildWhen: (prev, curr) => prev.isObscure != curr.isObscure,
             builder: (context, state) {
@@ -122,23 +119,15 @@ class _SignUpFormState extends State<SignUpForm> {
                 obscureText: state.isObscure,
                 suffixIcon: GestureDetector(
                   onTap: cubit.toggleObscure,
-                  child: SvgPicture.asset(AppSvgs.eye),
+                  child: state.isObscure
+                      ? Icon(Icons.visibility_off)
+                      : SvgPicture.asset(AppSvgs.eye),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return LocaleKeys.enterYourPassword;
-                  }
-                  if (value != passwordController.text) {
-                    return LocaleKeys.passwordMismatch;
-                  }
-                  return null;
-                },
+                validator: (value)=> AppValidator.validateEmptyField(context, value),
               );
             },
           ),
           24.verticalSpace,
-
-          // Sign Up button with state handling
           BlocBuilder<AuthCubit, AuthState>(
             buildWhen: (prev, curr) => prev.signUpState != curr.signUpState,
             builder: (context, state) {

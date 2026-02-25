@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'api_failure.dart';
 import 'api_services.dart';
 
-// ignore: constant_identifier_names
 enum ApiMethods { GET, POST, PUT, DELETE, PATCH }
 
 class ApiClient {

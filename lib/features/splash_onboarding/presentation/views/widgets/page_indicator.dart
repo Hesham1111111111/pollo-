@@ -26,7 +26,9 @@ class PageIndicator extends StatelessWidget {
               dotColor: AppColors.lightPrimary,
               activeDotColor: AppColors.primary,
             ),
-            textDirection: AppFunctions.isEnglish(context) ? TextDirection.ltr : TextDirection.rtl,
+            textDirection: AppFunctions.isEnglish(context)
+                ? TextDirection.ltr
+                : TextDirection.rtl,
           ),
         );
       },

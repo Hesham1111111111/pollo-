@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_state.dart';
+part of '../../../features/auth/presentation/manager/auth_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthState {
   int get currentCycle => throw _privateConstructorUsedError;
-  dynamic get signUpState => throw _privateConstructorUsedError;
-  dynamic get loginState => throw _privateConstructorUsedError;
+  RequestState<AuthResponse> get signUpState =>
+      throw _privateConstructorUsedError;
+  RequestState<AuthResponse> get loginState =>
+      throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
@@ -35,9 +37,12 @@ abstract class $AuthStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int currentCycle,
-      dynamic signUpState,
-      dynamic loginState,
+      RequestState<AuthResponse> signUpState,
+      RequestState<AuthResponse> loginState,
       bool isObscure});
+
+  $RequestStateCopyWith<AuthResponse, $Res> get signUpState;
+  $RequestStateCopyWith<AuthResponse, $Res> get loginState;
 }
 
 /// @nodoc
@@ -56,8 +61,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? currentCycle = null,
-    Object? signUpState = freezed,
-    Object? loginState = freezed,
+    Object? signUpState = null,
+    Object? loginState = null,
     Object? isObscure = null,
   }) {
     return _then(_value.copyWith(
@@ -65,19 +70,41 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.currentCycle
           : currentCycle // ignore: cast_nullable_to_non_nullable
               as int,
-      signUpState: freezed == signUpState
+      signUpState: null == signUpState
           ? _value.signUpState
           : signUpState // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      loginState: freezed == loginState
+              as RequestState<AuthResponse>,
+      loginState: null == loginState
           ? _value.loginState
           : loginState // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as RequestState<AuthResponse>,
       isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
+  }
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestStateCopyWith<AuthResponse, $Res> get signUpState {
+    return $RequestStateCopyWith<AuthResponse, $Res>(_value.signUpState,
+        (value) {
+      return _then(_value.copyWith(signUpState: value) as $Val);
+    });
+  }
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestStateCopyWith<AuthResponse, $Res> get loginState {
+    return $RequestStateCopyWith<AuthResponse, $Res>(_value.loginState,
+        (value) {
+      return _then(_value.copyWith(loginState: value) as $Val);
+    });
   }
 }
 
@@ -91,9 +118,14 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {int currentCycle,
-      dynamic signUpState,
-      dynamic loginState,
+      RequestState<AuthResponse> signUpState,
+      RequestState<AuthResponse> loginState,
       bool isObscure});
+
+  @override
+  $RequestStateCopyWith<AuthResponse, $Res> get signUpState;
+  @override
+  $RequestStateCopyWith<AuthResponse, $Res> get loginState;
 }
 
 /// @nodoc
@@ -110,8 +142,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentCycle = null,
-    Object? signUpState = freezed,
-    Object? loginState = freezed,
+    Object? signUpState = null,
+    Object? loginState = null,
     Object? isObscure = null,
   }) {
     return _then(_$AuthStateImpl(
@@ -119,8 +151,14 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.currentCycle
           : currentCycle // ignore: cast_nullable_to_non_nullable
               as int,
-      signUpState: freezed == signUpState ? _value.signUpState! : signUpState,
-      loginState: freezed == loginState ? _value.loginState! : loginState,
+      signUpState: null == signUpState
+          ? _value.signUpState
+          : signUpState // ignore: cast_nullable_to_non_nullable
+              as RequestState<AuthResponse>,
+      loginState: null == loginState
+          ? _value.loginState
+          : loginState // ignore: cast_nullable_to_non_nullable
+              as RequestState<AuthResponse>,
       isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
@@ -143,10 +181,10 @@ class _$AuthStateImpl implements _AuthState {
   final int currentCycle;
   @override
   @JsonKey()
-  final dynamic signUpState;
+  final RequestState<AuthResponse> signUpState;
   @override
   @JsonKey()
-  final dynamic loginState;
+  final RequestState<AuthResponse> loginState;
   @override
   @JsonKey()
   final bool isObscure;
@@ -163,21 +201,17 @@ class _$AuthStateImpl implements _AuthState {
             other is _$AuthStateImpl &&
             (identical(other.currentCycle, currentCycle) ||
                 other.currentCycle == currentCycle) &&
-            const DeepCollectionEquality()
-                .equals(other.signUpState, signUpState) &&
-            const DeepCollectionEquality()
-                .equals(other.loginState, loginState) &&
+            (identical(other.signUpState, signUpState) ||
+                other.signUpState == signUpState) &&
+            (identical(other.loginState, loginState) ||
+                other.loginState == loginState) &&
             (identical(other.isObscure, isObscure) ||
                 other.isObscure == isObscure));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      currentCycle,
-      const DeepCollectionEquality().hash(signUpState),
-      const DeepCollectionEquality().hash(loginState),
-      isObscure);
+      runtimeType, currentCycle, signUpState, loginState, isObscure);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -191,16 +225,16 @@ class _$AuthStateImpl implements _AuthState {
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {final int currentCycle,
-      final dynamic signUpState,
-      final dynamic loginState,
+      final RequestState<AuthResponse> signUpState,
+      final RequestState<AuthResponse> loginState,
       final bool isObscure}) = _$AuthStateImpl;
 
   @override
   int get currentCycle;
   @override
-  dynamic get signUpState;
+  RequestState<AuthResponse> get signUpState;
   @override
-  dynamic get loginState;
+  RequestState<AuthResponse> get loginState;
   @override
   bool get isObscure;
 

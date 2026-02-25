@@ -3,4 +3,5 @@ class ApiEndpoints {
   static const String login = 'login';
   static const String register = 'register';
   static const String categories = 'categories';
+  static const String categoriesTopLevel = 'categories/top-level';
 }

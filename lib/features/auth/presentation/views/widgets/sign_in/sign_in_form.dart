@@ -15,7 +15,7 @@ import 'package:pollo/core/widgets/app_button.dart';
 import 'package:pollo/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:pollo/features/auth/presentation/manager/auth_state.dart';
 import '../../../../data/model/login_request_model.dart';
-import '../../../manager/request_state.dart';
+import '../../../../../../core/helpers/request_state/request_state.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -34,6 +34,7 @@ class _SignInFormState extends State<SignInForm> {
     final cubit = context.read<AuthCubit>();
 
     return Form(
+
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -47,7 +48,6 @@ class _SignInFormState extends State<SignInForm> {
             validator: (value) => AppValidator.validateEmail(context, value),
           ),
           16.verticalSpace,
-
           BlocBuilder<AuthCubit, AuthState>(
             buildWhen: (prev, curr) => prev.isObscure != curr.isObscure,
             builder: (context, state) {
@@ -59,14 +59,16 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: state.isObscure,
                 suffixIcon: GestureDetector(
                   onTap: cubit.toggleObscure,
-                  child: SvgPicture.asset(AppSvgs.eye),
+                  child: state.isObscure
+                      ? Icon(Icons.visibility_off)
+                      : SvgPicture.asset(AppSvgs.eye),
                 ),
                 validator: (value) =>
                     AppValidator.validateEmptyField(context, value),
               );
             },
-          ),          8.verticalSpace,
-
+          ),
+          8.verticalSpace,
           GestureDetector(
             onTap: () => context.pushNamed(Routes.forgetPassword),
             child: GradientText(
@@ -75,7 +77,6 @@ class _SignInFormState extends State<SignInForm> {
             ),
           ),
           24.verticalSpace,
-
           BlocConsumer<AuthCubit, AuthState>(
             listenWhen: (prev, curr) => prev.loginState != curr.loginState,
             listener: (context, state) {
@@ -98,19 +99,19 @@ class _SignInFormState extends State<SignInForm> {
               return isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : AppButton(
-                title: context.tr(LocaleKeys.signIn),
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    cubit.login(LoginRequest(
-                      email: emailController.text.trim(),
-                      password: passController.text.trim(),
-                    ));
-                  }
-                },
-              );
+                      title: context.tr(LocaleKeys.signIn),
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          cubit.login(LoginRequest(
+                            email: emailController.text.trim(),
+                            password: passController.text.trim(),
+                          ));
+                        }
+                      },
+                    );
             },
-          ),          16.verticalSpace,
-
+          ),
+          16.verticalSpace,
           GestureDetector(
             onTap: () => context.pushNamed(Routes.signUp),
             child: Row(

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pollo/features/auth/presentation/manager/request_state.dart';
+import 'package:pollo/core/helpers/request_state/request_state.dart';
 import '../../data/model/login_request_model.dart';
 import '../../data/model/register_request_model.dart';
 import '../../data/repo/auth_repo.dart';
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> register(RegisterRequest request) async {
     emit(state.copyWith(
-      signUpState: const RequestState.loading(),
+      signUpState:  RequestState.loading(),
     ));
 
     final result = await authRepo.register(request);

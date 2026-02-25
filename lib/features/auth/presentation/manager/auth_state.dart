@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pollo/features/auth/presentation/manager/request_state.dart';
+import 'package:pollo/core/helpers/request_state/request_state.dart';
 
 import '../../data/model/auth_response_model.dart';
 
-part 'auth_state.freezed.dart';
+part '../../../../core/helpers/request_state/auth_state.freezed.dart';
 
 @freezed
 class AuthState with _$AuthState {
