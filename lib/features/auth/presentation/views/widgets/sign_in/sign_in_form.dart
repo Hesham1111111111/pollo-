@@ -30,11 +30,17 @@ class _SignInFormState extends State<SignInForm> {
   final passController = TextEditingController();
 
   @override
+  void initState() {
+    emailController.text = "Eth@gmail.com";
+    passController.text = "01154912395";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final cubit = context.read<AuthCubit>();
 
     return Form(
-
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

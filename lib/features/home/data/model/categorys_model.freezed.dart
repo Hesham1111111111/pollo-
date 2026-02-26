@@ -24,7 +24,6 @@ mixin _$Category {
   String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   String? get created => throw _privateConstructorUsedError;
 
   /// Serializes this Category to a JSON map.
@@ -42,12 +41,7 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call(
-      {int id,
-      String image,
-      String name,
-      String? type,
-      @JsonKey(name: 'created_at') String? created});
+  $Res call({int id, String image, String name, String? type, String? created});
 }
 
 /// @nodoc
@@ -104,12 +98,7 @@ abstract class _$$CategoryImplCopyWith<$Res>
       __$$CategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String image,
-      String name,
-      String? type,
-      @JsonKey(name: 'created_at') String? created});
+  $Res call({int id, String image, String name, String? type, String? created});
 }
 
 /// @nodoc
@@ -164,7 +153,7 @@ class _$CategoryImpl implements _Category {
       required this.image,
       required this.name,
       this.type,
-      @JsonKey(name: 'created_at') this.created});
+      this.created});
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryImplFromJson(json);
@@ -178,7 +167,6 @@ class _$CategoryImpl implements _Category {
   @override
   final String? type;
   @override
-  @JsonKey(name: 'created_at')
   final String? created;
 
   @override
@@ -224,7 +212,7 @@ abstract class _Category implements Category {
       required final String image,
       required final String name,
       final String? type,
-      @JsonKey(name: 'created_at') final String? created}) = _$CategoryImpl;
+      final String? created}) = _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
@@ -238,7 +226,6 @@ abstract class _Category implements Category {
   @override
   String? get type;
   @override
-  @JsonKey(name: 'created_at')
   String? get created;
 
   /// Create a copy of Category

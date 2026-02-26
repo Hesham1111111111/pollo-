@@ -15,7 +15,6 @@ class HomeCarouselBuilder extends StatelessWidget {
     return CarouselSlider.builder(
       key: ValueKey(context.locale.languageCode),
       itemCount: 3,
-      carouselController: cubit.carouselController,
       itemBuilder: (context, index, realIndex) {
         return const HomeCarouselItem();
       },

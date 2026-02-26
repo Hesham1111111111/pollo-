@@ -1,7 +1,14 @@
-part of 'home_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pollo/features/home/data/model/categorys_model.dart';
+import '../../../../core/helpers/request_state/request_state.dart';
 
-@immutable
-sealed class HomeState {}
+part 'home_state.freezed.dart';
 
-final class HomeInitial extends HomeState {}
-final class CarouselIndexChanged extends HomeState {}
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    @Default(0) int activeIndex,
+    @Default(RequestState<List<Category>>.initial())
+    RequestState<List<Category>> categoriesState,
+  }) = _HomeState;
+}

@@ -55,6 +55,8 @@ dependencies:
   dartz:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  shimmer_animation: ^2.2.2+1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

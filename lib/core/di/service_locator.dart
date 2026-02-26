@@ -11,6 +11,7 @@ import 'package:pollo/features/home/presentation/manager/home_cubit.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 import 'package:pollo/features/splash_onboarding/presentation/manager/onboarding_cubit.dart';
 
+import '../../features/home/data/repo/home_repo_impl.dart';
 import '../networking/api_client.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -26,7 +27,7 @@ Future<void> setupServiceLocator() async {
 
 // Register ApiClient  👈 مهم جدًا
   getIt.registerLazySingleton<ApiClient>(
-        () => ApiClient(getIt.get<ApiService>()),
+    () => ApiClient(getIt.get<ApiService>()),
   );
   // Register application-wide cubits
   getIt.registerFactory<AppCubit>(() => AppCubit());
@@ -38,16 +39,18 @@ Future<void> setupServiceLocator() async {
   // <---------------------------------------------------------------------------->
   // Auth
   getIt.registerLazySingleton(
-    () => AuthRepoImpl( getIt.get<ApiClient>()),
+    () => AuthRepoImpl(getIt.get<ApiClient>()),
   );
   getIt.registerFactory<AuthCubit>(
-      () => AuthCubit(AuthRepoImpl( getIt.get<ApiClient>())));
+      () => AuthCubit(AuthRepoImpl(getIt.get<ApiClient>())));
   // <---------------------------------------------------------------------------->
   // Bottom Nav
   getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
   // <---------------------------------------------------------------------------->
   // Home
-  getIt.registerFactory<HomeCubit>(() => HomeCubit());
+  getIt.registerLazySingleton<HomeRepoImpl>(
+        () => HomeRepoImpl(getIt.get<ApiClient>()),
+  );
   // <---------------------------------------------------------------------------->
   // Products
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit());
