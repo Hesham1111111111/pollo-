@@ -27,9 +27,7 @@ class HomeCarouselIndicator extends StatelessWidget {
               dotColor: const Color(0xffDBD5C6),
               activeDotColor: Colors.white,
             ),
-            textDirection: AppFunctions.isEnglish(context)
-                ? TextDirection.ltr
-                : TextDirection.rtl,
+            textDirection: AppFunctions.isEnglish(context) ? TextDirection.ltr : TextDirection.rtl,
           ),
         );
       },

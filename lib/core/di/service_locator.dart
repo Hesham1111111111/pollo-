@@ -47,11 +47,13 @@ Future<void> setupServiceLocator() async {
   // Bottom Nav
   getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
   // <---------------------------------------------------------------------------->
-  // Home
-  getIt.registerLazySingleton<HomeRepoImpl>(
-        () => HomeRepoImpl(getIt.get<ApiClient>()),
-  );
-  // <---------------------------------------------------------------------------->
+  // Home getIt.registerLazySingleton<HomeRepoImpl>(() => HomeRepoImpl(getIt.get<ApiClient>()));
+  //
+  //   // بعدين الـ Cubits
+  getIt.registerLazySingleton<HomeRepoImpl>(() => HomeRepoImpl(getIt.get<ApiClient>()));
+
+  // بعدين الـ Cubits
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt.get<HomeRepoImpl>()));  // <---------------------------------------------------------------------------->
   // Products
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit());
   // <---------------------------------------------------------------------------->

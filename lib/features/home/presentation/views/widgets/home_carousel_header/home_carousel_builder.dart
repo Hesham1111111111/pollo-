@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pollo/features/home/presentation/manager/home_cubit.dart';
 import 'package:pollo/features/home/presentation/views/widgets/home_carousel_header/home_carousel_item.dart';
-
 class HomeCarouselBuilder extends StatelessWidget {
   const HomeCarouselBuilder({super.key});
 
@@ -15,6 +14,7 @@ class HomeCarouselBuilder extends StatelessWidget {
     return CarouselSlider.builder(
       key: ValueKey(context.locale.languageCode),
       itemCount: 3,
+      carouselController: cubit.carouselController,
       itemBuilder: (context, index, realIndex) {
         return const HomeCarouselItem();
       },

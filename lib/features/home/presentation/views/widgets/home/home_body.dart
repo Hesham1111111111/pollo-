@@ -12,18 +12,16 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        spacing: 24.h,
-        children: [
-          const HomeHeader(),
-          const StaticSearchField(),
-          const HomeCarouselHeader(),
-          HomeGrid(
-            title: context.tr(LocaleKeys.categories),
-          ),
-        ],
-      ),
+    return Column(
+      spacing: 24.h,
+      children: [
+        const HomeHeader(),
+        const StaticSearchField(),
+        const HomeCarouselHeader(),
+        HomeGrid(
+          title: context.tr(LocaleKeys.categories),
+        ),
+      ],
     );
   }
-  }
+}

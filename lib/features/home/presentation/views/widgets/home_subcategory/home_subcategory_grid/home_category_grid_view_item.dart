@@ -4,15 +4,11 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
-import 'package:pollo/features/home/data/model/categorys_model.dart';
 
 class HomeSubcategoryGridViewItem extends StatelessWidget {
   const HomeSubcategoryGridViewItem({
     super.key,
-    required this.category,
   });
-
-  final Category category;
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +27,18 @@ class HomeSubcategoryGridViewItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                border:
-                const GradientBoxBorder(gradient: AppColors.appGradient),
+                border: const GradientBoxBorder(gradient: AppColors.appGradient),
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
-                child: Image.network(category.image),
+                child: Image.asset(
+                  AppImages.doctor2,
+                ),
               ),
             ),
           ),
           Text(
-            category.type ?? '',
+            'Pet Animals',
             style: TextStyles.style16Bold(),
             overflow: TextOverflow.ellipsis,
           ),

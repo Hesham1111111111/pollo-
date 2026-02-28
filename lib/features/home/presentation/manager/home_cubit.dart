@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pollo/features/home/data/repo/home_repo.dart';
@@ -9,9 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(const HomeState());
   final HomeRepo homeRepo;
 
-  final CarouselController carouselController = CarouselController();
-
-  void setCurrentPage(int index) {
+  final CarouselSliderController carouselController = CarouselSliderController();  void setCurrentPage(int index) {
     emit(state.copyWith(activeIndex: index));
   }
 
