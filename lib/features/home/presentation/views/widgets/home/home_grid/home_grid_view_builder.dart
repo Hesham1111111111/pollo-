@@ -15,7 +15,7 @@ class HomeGridViewBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        return state.categoriesState.when(
+        return state.topCategoriesState.when(
           initial: () => const SizedBox(),
           loading: () => Expanded(
             child: GridView.builder(

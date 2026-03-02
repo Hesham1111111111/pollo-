@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 
-import '../../../../../data/model/categorys_model.dart';
+import '../../../../../data/model/category_top_level_model/categorys_model.dart';
 
 class HomeGridViewItem extends StatelessWidget {
   const HomeGridViewItem({

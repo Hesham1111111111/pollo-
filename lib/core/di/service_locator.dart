@@ -25,7 +25,6 @@ Future<void> setupServiceLocator() async {
     ApiService(getIt.get<Dio>()),
   );
 
-// Register ApiClient  👈 مهم جدًا
   getIt.registerLazySingleton<ApiClient>(
     () => ApiClient(getIt.get<ApiService>()),
   );

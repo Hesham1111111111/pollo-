@@ -15,13 +15,24 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void>getCategoriesTop() async {
-    emit(state.copyWith(categoriesState: const RequestState.loading()));
+    emit(state.copyWith(topCategoriesState: const RequestState.loading()));
     final result = await homeRepo.getCategoryTop();
     result.fold((failure) {
       emit(
-          state.copyWith(categoriesState: RequestState.error(failure.message)));
+          state.copyWith(topCategoriesState: RequestState.error(failure.message)));
     }, (categories) {
-      emit(state.copyWith(categoriesState: RequestState.success(categories)));
+      emit(state.copyWith(topCategoriesState: RequestState.success(categories)));
     });
   }
+  Future<void>getSubCategories() async {
+    emit(state.copyWith(subCategoriesState: const RequestState.loading()));
+    final result = await homeRepo.getSubCategory();
+    result.fold((failure) {
+      emit(
+          state.copyWith(subCategoriesState: RequestState.error(failure.message)));
+    }, (subCategories) {
+      emit(state.copyWith(subCategoriesState: RequestState.success(subCategories)));
+    });
+  }
+
 }

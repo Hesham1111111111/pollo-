@@ -15,7 +15,7 @@ class ProductsBody extends StatelessWidget {
       children: [
         8.verticalSpace,
         const ProductsSearchAndFilter(),
-        8.verticalSpace,
+        8.verticalSpace,  
         const SearchResultsCountAndSortBy(),
         4.verticalSpace,
         Divider(
