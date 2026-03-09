@@ -7,6 +7,9 @@ import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/animation_wrapper/animation_wrapper.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 
+import '../../../../../../drawer_pages/presentation/manager/drawer_pages_cubit.dart';
+import '../../../../manager/products_state.dart';
+
 class ProductHeaderCarouselItemCount extends StatelessWidget {
   const ProductHeaderCarouselItemCount({
     super.key,
@@ -30,12 +33,12 @@ class ProductHeaderCarouselItemCount extends StatelessWidget {
               AppSvgs.camera,
               width: 16.w,
               height: 16.h,
-            ),
-            BlocBuilder<ProductsCubit, ProductsState>(
-              buildWhen: (previous, current) => current is CarouselIndexChanged,
+            ),BlocBuilder<ProductsCubit, ProductsState>(
+              buildWhen: (previous, current) =>
+              previous.activeIndex != current.activeIndex,
               builder: (context, state) {
                 return Text(
-                  '${cubit.activeIndex + 1} / 4',
+                  '${state.activeIndex + 1} / 4',
                   style: TextStyles.style12Bold(color: Colors.white),
                 );
               },

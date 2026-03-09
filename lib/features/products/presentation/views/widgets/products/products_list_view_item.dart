@@ -8,17 +8,33 @@ import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/star_rating.dart';
+import 'package:pollo/features/products/data/model/product/product_model.dart';
 
 class ProductsListViewItem extends StatelessWidget {
   const ProductsListViewItem({
     super.key,
     required this.heroTag,
+    required this.product,
   });
 
   final String heroTag;
+  final Product product;
+
+
+  int getDaysAgo() {
+    try {
+      final createdAt = DateTime.parse(product.createdAt);
+      final difference = DateTime.now().difference(createdAt).inDays;
+      return difference >= 0 ? difference : 0;
+    } catch (_) {
+      return 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final daysAgo = getDaysAgo();
+
     return Container(
       height: 155.h,
       decoration: BoxDecoration(
@@ -28,17 +44,25 @@ class ProductsListViewItem extends StatelessWidget {
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadiusGeometry.horizontal(
-              left: AppFunctions.isEnglish(context) ? Radius.circular(8.r) : null,
-              right: AppFunctions.isEnglish(context) ? null : Radius.circular(8.r),
+            borderRadius: BorderRadius.horizontal(
+              left: AppFunctions.isEnglish(context) ? Radius.circular(8.r) : Radius.zero,
+              right: AppFunctions.isEnglish(context) ? Radius.zero : Radius.circular(8.r),
             ),
             child: Hero(
               tag: heroTag,
-              child: Image.asset(
-                AppImages.cat,
+              child: Image.network(
+                product.image ?? '',
                 height: 155.h,
                 width: 130.w,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    height: 155.h,
+                    width: 130.w,
+                    color: Colors.grey.shade200,
+                    child: Icon(Icons.image_not_supported, size: 40.sp),
+                  );
+                },
               ),
             ),
           ),
@@ -49,12 +73,13 @@ class ProductsListViewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Text(
-                          'White Cat',
+                          product.name ?? '',
                           style: TextStyles.style16Medium(),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -67,23 +92,26 @@ class ProductsListViewItem extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    '${context.tr(LocaleKeys.price)} 500 L.E',
+                    '${context.tr(LocaleKeys.price)} ${product.price ?? ''} L.E',
                     style: TextStyles.style16Medium(),
                   ),
                   StarRating(
-                    rating: 3.2,
-                    ignoreGestures: true,
+                    rating: (product.merchant?.reviewsAvgRating ?? 0).toDouble(),                    ignoreGestures: true,
                     onRatingUpdate: (value) {},
                   ),
                   Text(
-                    'Sharkia - Zagazig',
-                    style: TextStyles.style14Medium(color: AppColors.secondaryText),
+                    '${product.state?.name ?? ''} - ${product.city?.name ?? ''}',
+                    style: TextStyles.style14Medium(
+                      color: AppColors.secondaryText,
+                    ),
                   ),
                   Text(
                     context.tr(
-                      LocaleKeys.daysAgo.plural(2),
+                      LocaleKeys.daysAgo.plural(daysAgo),
                     ),
-                    style: TextStyles.style14Medium(color: AppColors.secondaryText),
+                    style: TextStyles.style14Medium(
+                      color: AppColors.secondaryText,
+                    ),
                   ),
                 ],
               ),

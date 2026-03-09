@@ -8,6 +8,8 @@ import 'package:pollo/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:pollo/features/bottom_nav/presentation/manager/bottom_nav_cubit.dart';
 import 'package:pollo/features/drawer_pages/presentation/manager/drawer_pages_cubit.dart';
 import 'package:pollo/features/home/presentation/manager/home_cubit.dart';
+import 'package:pollo/features/products/data/repo/product_repo.dart';
+import 'package:pollo/features/products/data/repo/product_repo_implt.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 import 'package:pollo/features/splash_onboarding/presentation/manager/onboarding_cubit.dart';
 
@@ -50,11 +52,13 @@ Future<void> setupServiceLocator() async {
   //
   //   // بعدين الـ Cubits
   getIt.registerLazySingleton<HomeRepoImpl>(() => HomeRepoImpl(getIt.get<ApiClient>()));
-
+  getIt.registerLazySingleton<ProductRepoImpl>(
+        () => ProductRepoImpl(getIt.get<ApiClient>()),
+  );
   // بعدين الـ Cubits
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt.get<HomeRepoImpl>()));  // <---------------------------------------------------------------------------->
   // Products
-  getIt.registerFactory<ProductsCubit>(() => ProductsCubit());
+  getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt.get<ProductRepoImpl>()));
   // <---------------------------------------------------------------------------->
   // Drawer Pages
   getIt.registerFactory<DrawerPagesCubit>(() => DrawerPagesCubit());

@@ -7,6 +7,8 @@ import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 import 'package:pollo/features/products/presentation/views/widgets/products/sort_by_pop_up_menu.dart';
 
+import '../../../manager/products_state.dart';
+
 class SearchResultsCountAndSortBy extends StatelessWidget {
   const SearchResultsCountAndSortBy({
     super.key,
@@ -39,7 +41,7 @@ class SearchResultsCountAndSortBy extends StatelessWidget {
           ),
         ),
         BlocBuilder<ProductsCubit, ProductsState>(
-          buildWhen: (previous, current) => current is SortByUpdated,
+        //  buildWhen: (previous, current) => current is ,
           builder: (context, state) {
             return SortByPopUpMenu(
               options: [

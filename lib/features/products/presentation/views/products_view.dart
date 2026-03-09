@@ -12,7 +12,7 @@ class ProductsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<ProductsCubit>(),
+      create: (context) => getIt.get<ProductsCubit>()..getProducts(),
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Pet Animals'),
         body: Padding(
