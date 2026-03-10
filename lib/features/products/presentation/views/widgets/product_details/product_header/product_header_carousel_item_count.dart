@@ -12,7 +12,7 @@ import '../../../../manager/products_state.dart';
 
 class ProductHeaderCarouselItemCount extends StatelessWidget {
   const ProductHeaderCarouselItemCount({
-    super.key,
+    super.key, required imagesCount,
   });
 
   @override

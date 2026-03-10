@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 
-class ProductInfoDetailsReadMoreText extends StatelessWidget {
-  const ProductInfoDetailsReadMoreText({super.key});
+import '../../../../../data/model/product/product_model.dart';
 
+class ProductInfoDetailsReadMoreText extends StatelessWidget {
+  const ProductInfoDetailsReadMoreText({super.key, required this.product});
+final Product product;
   @override
   Widget build(BuildContext context) {
     return ReadMoreText(
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      product.description,
       trimLines: 2,
       trimMode: TrimMode.Line,
       style: TextStyles.style16Medium(color: AppColors.secondaryText),

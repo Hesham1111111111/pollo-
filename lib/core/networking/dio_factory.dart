@@ -104,6 +104,6 @@ class DioFactory {
           (interceptor) => interceptor is InterceptorsWrapper,
     );
 
-    _addAuthInterceptor(); // Re-add interceptor (without token)
+    _addAuthInterceptor();
   }
 }

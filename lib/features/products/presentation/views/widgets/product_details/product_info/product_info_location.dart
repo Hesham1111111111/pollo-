@@ -7,12 +7,18 @@ import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/gradient_text.dart';
+import 'package:pollo/features/products/data/model/product/product_model.dart';
 
 class ProductInfoLocation extends StatelessWidget {
-  const ProductInfoLocation({super.key});
+  const ProductInfoLocation({super.key, required this.product});
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
+    final location =
+        '${product.state?.name ?? ''} - ${product.city?.name ?? ''}';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,10 +27,18 @@ class ProductInfoLocation extends StatelessWidget {
           style: TextStyles.style18SemiBold(),
         ),
         8.verticalSpace,
+
+        Text(
+          location,
+          style: TextStyles.style14Medium(color: AppColors.secondaryText),
+        ),
+
+        8.verticalSpace,
+
         Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(10.r),
+              borderRadius: BorderRadius.circular(10.r),
               child: Image.asset(
                 AppImages.map,
                 height: 136.h,
@@ -32,24 +46,33 @@ class ProductInfoLocation extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+
             Container(
               height: 136.h,
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadiusGeometry.circular(10.r),
+                borderRadius: BorderRadius.circular(10.r),
                 color: Colors.black.withAlpha(51),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                border: const GradientBoxBorder(gradient: AppColors.appGradient),
-                borderRadius: BorderRadiusGeometry.circular(10.r),
-                color: const Color(0xffE9EBEF),
-              ),
-              child: GradientText(
-                context.tr(LocaleKeys.seeLocation),
-                style: TextStyles.style16SemiBold(),
+
+            Positioned.fill(
+              child: Center(
+                child: Container(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    border: const GradientBoxBorder(
+                      gradient: AppColors.appGradient,
+                    ),
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xffE9EBEF),
+                  ),
+                  child: GradientText(
+                    context.tr(LocaleKeys.seeLocation),
+                    style: TextStyles.style16SemiBold(),
+                  ),
+                ),
               ),
             ),
           ],

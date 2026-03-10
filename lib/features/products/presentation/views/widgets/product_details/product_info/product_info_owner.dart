@@ -8,12 +8,23 @@ import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/gradient_text.dart';
 import 'package:pollo/core/widgets/star_rating.dart';
+import 'package:pollo/features/products/data/model/product/product_model.dart';
 
 class ProductInfoOwner extends StatelessWidget {
-  const ProductInfoOwner({super.key});
+  const ProductInfoOwner({
+    super.key,
+    required this.product,
+  });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
+    final merchant = product.merchant;
+
+    final firstLetter =
+    (merchant?.firstName ?? '').isNotEmpty ? merchant!.firstName[0] : '';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,7 +34,6 @@ class ProductInfoOwner extends StatelessWidget {
         ),
         8.verticalSpace,
         Row(
-          spacing: 8.w,
           children: [
             Container(
               width: 60.r,
@@ -34,19 +44,19 @@ class ProductInfoOwner extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'K',
+                  firstLetter,
                   style: TextStyles.style22SemiBold(color: Colors.white),
                 ),
               ),
             ),
+            8.horizontalSpace,
             Expanded(
               child: Column(
-                spacing: 2.h,
                 children: [
                   Row(
                     children: [
                       Text(
-                        'Khaled Mohamed',
+                        merchant?.firstName ?? '',
                         style: TextStyles.style16Medium(),
                       ),
                       const Spacer(),
@@ -66,7 +76,9 @@ class ProductInfoOwner extends StatelessWidget {
                     children: [
                       Text(
                         '${context.tr(LocaleKeys.memberSince)} Oct 7, 2022',
-                        style: TextStyles.style12Medium(color: AppColors.secondaryText),
+                        style: TextStyles.style12Medium(
+                          color: AppColors.secondaryText,
+                        ),
                       ),
                       StarRating(
                         rating: 4,
@@ -78,7 +90,7 @@ class ProductInfoOwner extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         )
       ],

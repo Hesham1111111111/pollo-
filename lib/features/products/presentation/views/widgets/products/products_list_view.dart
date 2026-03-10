@@ -23,7 +23,10 @@ class ProductsListView extends StatelessWidget {
             onTap: () {
               context.pushNamed(
                 Routes.productsDetails,
-                arguments: heroTag,
+                arguments: {
+                  "product": product,
+                  "heroTag": heroTag,
+                },
               );
             },
             child: ProductsListViewItem(

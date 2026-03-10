@@ -71,10 +71,17 @@ class AppRouter {
           builder: (_) => const ProductsView(),
         );
       case Routes.productsDetails:
+        final args = settings.arguments as Map;
+
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const ProductsDetailsView(),
+          builder: (_) =>
+              ProductsDetailsView(
+                product: args['product'],
+                heroTag: args['heroTag'],
+              ),
         );
+
       case Routes.about:
         return MaterialPageRoute(
           settings: settings,

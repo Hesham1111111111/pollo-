@@ -5,22 +5,24 @@ import 'package:pollo/features/products/presentation/views/widgets/product_detai
 import 'package:pollo/features/products/presentation/views/widgets/product_details/product_info/product_info_location.dart';
 import 'package:pollo/features/products/presentation/views/widgets/product_details/product_info/product_info_owner.dart';
 
-class ProductInfo extends StatelessWidget {
-  const ProductInfo({super.key});
+import '../../../../../data/model/product/product_model.dart';
 
+class ProductInfo extends StatelessWidget {
+  const ProductInfo({super.key, required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.w),
       child: Column(
         children: [
-          const ProductInfoDescription(),
+           ProductInfoDescription(product:product ,),
           24.verticalSpace,
-          const ProductInfoDetails(),
+           ProductInfoDetails(product: product,),
           24.verticalSpace,
-          const ProductInfoOwner(),
+           ProductInfoOwner(product: product,),
           24.verticalSpace,
-          const ProductInfoLocation(),
+           ProductInfoLocation(product: product,),
           24.verticalSpace,
         ],
       ),

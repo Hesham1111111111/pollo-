@@ -5,10 +5,18 @@ import 'package:pollo/core/helpers/extensions.dart';
 import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 
+import '../../../../../data/model/product/product_model.dart';
 class ProductHeaderCarousel extends StatelessWidget {
+
+  final Product product;
+  final String heroTag;
+
   const ProductHeaderCarousel({
     super.key,
+    required this.product,
+    required this.heroTag,
   });
+
 
   @override
   Widget build(BuildContext context) {

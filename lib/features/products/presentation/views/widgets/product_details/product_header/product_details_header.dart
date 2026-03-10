@@ -4,10 +4,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pollo/core/helpers/extensions.dart';
 import 'package:pollo/core/resources/assets.dart';
 import 'package:pollo/core/widgets/animation_wrapper/animation_wrapper.dart';
+import 'package:pollo/features/products/data/model/product/product_model.dart';
 import 'package:pollo/features/products/presentation/views/widgets/product_details/product_header/product_details_header_background.dart';
 
 class ProductDetailsHeader extends StatelessWidget {
-  const ProductDetailsHeader({super.key});
+  final Product product;
+  final String heroTag;
+
+  const ProductDetailsHeader({
+    super.key,
+    required this.product,
+    required this.heroTag,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,7 @@ class ProductDetailsHeader extends StatelessWidget {
       snap: false,
       collapsedHeight: 160.h,
       toolbarHeight: 56.h,
+
       leading: AnimationWrapper(
         child: GestureDetector(
           onTap: () {
@@ -31,13 +40,17 @@ class ProductDetailsHeader extends StatelessWidget {
           ),
         ),
       ),
+
       actions: [
         AnimationWrapper(
           child: SvgPicture.asset(
             AppSvgs.heartOutlined,
             width: 24.w,
             height: 24.h,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcIn,
+            ),
           ),
         ),
         16.horizontalSpace,
@@ -46,12 +59,20 @@ class ProductDetailsHeader extends StatelessWidget {
             AppSvgs.share,
             width: 24.w,
             height: 24.h,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ],
+
       actionsPadding: EdgeInsets.symmetric(horizontal: 16.w),
-      flexibleSpace: const ProductDetailsHeaderBackground(),
+
+      flexibleSpace: ProductDetailsHeaderBackground(
+        product: product,
+        heroTag: heroTag,
+      ),
     );
   }
 }

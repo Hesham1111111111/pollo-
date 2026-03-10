@@ -8,10 +8,15 @@ import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/star_rating.dart';
 
+import '../../../../../data/model/product/product_model.dart';
+
 class ProductInfoDescription extends StatelessWidget {
   const ProductInfoDescription({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class ProductInfoDescription extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Cat',
+               product.name,
               style: TextStyles.style22SemiBold(),
             ),
             StarRating(
@@ -41,7 +46,7 @@ class ProductInfoDescription extends StatelessWidget {
                 style: TextStyles.style16Medium(),
               ),
               TextSpan(
-                text: '500 L.E',
+                text: product.price,
                 style: TextStyles.style22SemiBold(),
               ),
             ],
@@ -57,12 +62,14 @@ class ProductInfoDescription extends StatelessWidget {
               height: 24.h,
             ),
             Text(
-              'Sharkia - Zagazig',
+              product.city?.name ?? '',
               style: TextStyles.style16Medium(color: AppColors.secondaryText),
             ),
             const Spacer(),
             Text(
-              '2/6/2023',
+              context.tr(
+                LocaleKeys.daysAgo.plural(3),
+              ),
               style: TextStyles.style16Medium(color: AppColors.secondaryText),
             ),
           ],
