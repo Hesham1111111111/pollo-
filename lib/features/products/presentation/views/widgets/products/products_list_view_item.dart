@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pollo/core/helpers/app_functions.dart';
@@ -9,6 +10,7 @@ import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/star_rating.dart';
 import 'package:pollo/features/products/data/model/product/product_model.dart';
+import 'package:pollo/features/products/presentation/manager/products_cubit.dart';
 
 class ProductsListViewItem extends StatelessWidget {
   const ProductsListViewItem({
@@ -19,7 +21,6 @@ class ProductsListViewItem extends StatelessWidget {
 
   final String heroTag;
   final Product product;
-
 
   int getDaysAgo() {
     try {
@@ -33,6 +34,7 @@ class ProductsListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<ProductsCubit>();
     final daysAgo = getDaysAgo();
 
     return Container(
@@ -45,8 +47,12 @@ class ProductsListViewItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.horizontal(
-              left: AppFunctions.isEnglish(context) ? Radius.circular(8.r) : Radius.zero,
-              right: AppFunctions.isEnglish(context) ? Radius.zero : Radius.circular(8.r),
+              left: AppFunctions.isEnglish(context)
+                  ? Radius.circular(8.r)
+                  : Radius.zero,
+              right: AppFunctions.isEnglish(context)
+                  ? Radius.zero
+                  : Radius.circular(8.r),
             ),
             child: Hero(
               tag: heroTag,
@@ -66,6 +72,7 @@ class ProductsListViewItem extends StatelessWidget {
               ),
             ),
           ),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
@@ -84,27 +91,41 @@ class ProductsListViewItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      SvgPicture.asset(
-                        AppSvgs.heartOutlined,
-                        width: 24.r,
-                        height: 24.r,
+
+                      GestureDetector(
+                        onTap: () {
+                          cubit.addToFavorites(product.id);
+                        },
+                        child: SvgPicture.asset(
+                          cubit.favoriteProducts.contains(product.id)
+                              ? AppSvgs.eye
+                              : AppSvgs.heartOutlined,
+                          width: 24.r,
+                          height: 24.r,
+                        ),
                       ),
                     ],
                   ),
+
                   Text(
                     '${context.tr(LocaleKeys.price)} ${product.price ?? ''} L.E',
                     style: TextStyles.style16Medium(),
                   ),
+
                   StarRating(
-                    rating: (product.merchant?.reviewsAvgRating ?? 0).toDouble(),                    ignoreGestures: true,
+                    rating:
+                    (product.merchant?.reviewsAvgRating ?? 0).toDouble(),
+                    ignoreGestures: true,
                     onRatingUpdate: (value) {},
                   ),
+
                   Text(
                     '${product.state?.name ?? ''} - ${product.city?.name ?? ''}',
                     style: TextStyles.style14Medium(
                       color: AppColors.secondaryText,
                     ),
                   ),
+
                   Text(
                     context.tr(
                       LocaleKeys.daysAgo.plural(daysAgo),

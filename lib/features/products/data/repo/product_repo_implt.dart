@@ -14,12 +14,24 @@ class ProductRepoImpl implements ProductRepo {
   @override
   Future<Either<Failure, List<Product>>> getProduct() {
     return apiClient.request<List<Product>>(
-        method: ApiMethods.GET,
-        endpoint: ApiEndpoints.products,
-        response: (json) {
-          final List<dynamic> product = json['data'] as List<dynamic>;          return product
-              .map((e) => Product.fromJson(e as Map<String, dynamic>))
-              .toList();
-        });
+      method: ApiMethods.GET,
+      endpoint: ApiEndpoints.products,
+      response: (json) {
+        final List<dynamic> product = json['data'] as List<dynamic>;
+        return product
+            .map((e) => Product.fromJson(e as Map<String, dynamic>))
+            .toList();
+      },
+    );
   }
-}
+
+  @override
+  Future<Either<Failure, String>> addToFavorite(int id) {
+    return apiClient.request<String>(
+      method: ApiMethods.POST,
+      endpoint: ApiEndpoints.addToFavorites(id),
+      response: (json) {
+        return json['message'] as String;
+      },
+    );
+  }}

@@ -5,4 +5,6 @@ import '../model/product/product_model.dart';
 
 abstract class ProductRepo {
   Future<Either<Failure, List<Product>>> getProduct();
+  Future<Either<Failure, String>> addToFavorite(int id );
+
 }

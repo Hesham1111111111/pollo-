@@ -6,4 +6,6 @@ class ApiEndpoints {
   static const String categoriesTopLevel = 'categories/top-level';
   static const String subCategories = 'categories/1/sub-categories';
   static const String products = 'products';
-}
+  static String addToFavorites(int id) {
+    return 'products/$id/like';
+  }}

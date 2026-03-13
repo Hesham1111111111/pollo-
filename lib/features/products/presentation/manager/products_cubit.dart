@@ -21,8 +21,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   String? sortBy;
 
-  final CarouselSliderController carouselController =
-      CarouselSliderController();
+  final CarouselSliderController carouselController = CarouselSliderController();
 
   /// update price range
   void updatePriceRange(RangeValues rangeValues) {
@@ -71,4 +70,23 @@ class ProductsCubit extends Cubit<ProductsState> {
       },
     );
   }
-}
+  List<int> favoriteProducts = [];
+  Future<void> addToFavorites(int id) async {
+    final result = await productRepo.addToFavorite(id);
+
+    result.fold(
+          (failure) {
+        debugPrint(failure.message);
+      },
+          (success) {
+
+        if (favoriteProducts.contains(id)) {
+          favoriteProducts.remove(id);
+        } else {
+          favoriteProducts.add(id);
+        }
+
+        emit(state.copyWith());
+      },
+    );
+  }}
