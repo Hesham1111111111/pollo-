@@ -5,10 +5,11 @@ import 'package:pollo/core/helpers/locale_keys.dart';
 import 'package:pollo/core/resources/colors.dart';
 import 'package:pollo/core/resources/styles.dart';
 import 'package:pollo/core/widgets/gradient_text.dart';
+import 'package:pollo/features/account/data/models/merchant_model.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
-
+  const ProfileHeader({super.key, required this.merchant});
+ final Merchant merchant;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,7 +72,7 @@ class ProfileHeader extends StatelessWidget {
                   ),
                   child: Center(
                     child: GradientText(
-                      'K',
+                      merchant.firstName![0].toUpperCase(),
                       style: TextStyles.style24SemiBold(),
                     ),
                   ),
@@ -81,11 +82,11 @@ class ProfileHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Khaled Mohamed',
+                      merchant.firstName.toString()+' '+merchant.lastName.toString(),
                       style: TextStyles.style22SemiBold(color: Colors.white),
                     ),
                     Text(
-                      '+201110101010',
+                      merchant.phone.toString(),
                       style: TextStyles.style16Medium(color: Colors.white),
                     ),
                   ],
